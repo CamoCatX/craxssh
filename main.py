@@ -1,5 +1,6 @@
 import multiprocessing
 import subprocess
+import os
 from typing import List, Tuple
 
 def ssh_login(args: Tuple[str, str, str, set]) -> Tuple[str, str]:
@@ -19,8 +20,8 @@ def ssh_login(args: Tuple[str, str, str, set]) -> Tuple[str, str]:
 
 def main() -> None:
     hostname = input("Enter the IP address of the ssh server: ")
-    username_file = input("Enter the path to the username file: ")
-    password_file = input("Enter the path to the password file: ")
+    username_file = filedialog.askopenfilename(title="Select a Username File", filetypes=(("Text files", "*.txt"),))
+    password_file = filedialog.askopenfilename(title="Select a Password File", filetypes=(("Text files", "*.txt"),))
 
     with open(username_file, 'r') as f:
         usernames = f.read().splitlines()
